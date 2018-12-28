@@ -38,9 +38,9 @@ Auth::routes();
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 //
 //// Email 认证相关路由
-//Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
-//Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
-//Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 //这一句跟上面的首页冲突, 直接铲掉
 //Route::get('/home', 'HomeController@index')->name('home');
