@@ -34,8 +34,11 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
+        //所有控制器动作在认证之后才能范文
         $this->middleware('auth');
+        //只有认证verify动作使用signed路由签名中间件进行认证
         $this->middleware('signed')->only('verify');
+        //一分钟内, resend不能超过6次
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
