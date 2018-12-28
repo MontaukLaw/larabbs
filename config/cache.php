@@ -1,5 +1,5 @@
 <?php
-
+//缓存相关信息
 use Illuminate\Support\Str;
 
 return [
