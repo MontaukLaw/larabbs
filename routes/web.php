@@ -44,3 +44,10 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 
 //这一句跟上面的首页冲突, 直接铲掉
 //Route::get('/home', 'HomeController@index')->name('home');
+
+//资源路由, 相当于
+//Route::get('/users/{user}', 'UsersController@show')->name('users.show');
+//Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
+//Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
+
+Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
