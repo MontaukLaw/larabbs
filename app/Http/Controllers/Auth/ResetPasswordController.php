@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
@@ -36,4 +37,13 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    //查看vendor/laravel/framework/src/Illuminate/Foundation/Auth/ResetsPasswords.php发现
+    protected function sendResetResponse(Request $request, $response)
+    {
+        session()->flash('success', '密码更新成功，您已成功登录！');
+        return redirect($this->redirectPath());
+    }
+
+
 }
