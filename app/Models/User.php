@@ -30,4 +30,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //User可以有很多topics, 这个方法能返回所有的自己的topics, 1对多关系
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
 }
