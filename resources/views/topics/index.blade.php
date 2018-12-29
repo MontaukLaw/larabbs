@@ -6,8 +6,8 @@
     <div class="card ">
       <div class="card-header">
         <h1>
-          Topic
-          <a class="btn btn-success float-xs-right" href="{{ route('topics.create') }}">Create</a>
+          文章列表
+          <a class="btn btn-success float-xs-right" href="{{ route('topics.create') }}">发帖</a>
         </h1>
       </div>
 
@@ -51,7 +51,7 @@
           </table>
           {!! $topics->render() !!}
         @else
-          <h3 class="text-xs-center alert alert-info">Empty!</h3>
+          <h3 class="text-xs-center alert alert-info">还没有任何帖子!</h3>
         @endif
       </div>
     </div>
