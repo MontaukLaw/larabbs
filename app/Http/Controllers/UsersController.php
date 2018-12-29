@@ -27,7 +27,7 @@ class UsersController extends Controller
         //如果上传了头像
         if ($request->avatar) {
             //尝试保存头像并返回保存目录
-            $result = $uploader->save($request->avatar, 'avatars', $user->id);
+            $result = $uploader->save($request->avatar, 'avatars', $user->id,416);
             //成功之后, 写入数组
             if ($result) {
                 $data['avatar'] = $result['path'];
