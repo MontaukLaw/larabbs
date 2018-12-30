@@ -16,6 +16,8 @@
     {{-- mix('css/app.css') 会根据 webpack.mix.js 的逻辑来生成 CSS 文件链接。 --}}
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    {{-- 单独引用的css --}}
+    @yield('styles')
 
 </head>
 
@@ -38,6 +40,9 @@
 
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
+{{-- 为编辑器单独引入的js --}}
+@yield('scripts')
+
 </body>
 
 </html>
