@@ -76,6 +76,21 @@
         $(document).ready(function() {
             var editor = new Simditor({
                 textarea: $('#editor'),
+                upload: {
+                    url: '{{ route('topics.upload_image') }}',
+                    //增加上传的参数是csrf的令牌
+                    params: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    //上传的键值
+                    fileKey: 'upload_file',
+                    //同时上传3张图片
+                    connectionCount: 3,
+                    //取消上传要提示的文本
+                    leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+                },
+                //是否可以在文章中直接用粘贴方法附上照片.
+                pasteImage: true,
             });
         });
     </script>

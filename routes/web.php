@@ -56,3 +56,6 @@ Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'crea
 //分类的路由
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 
+//给帖子增加图片
+Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
+
