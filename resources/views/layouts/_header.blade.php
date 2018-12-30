@@ -28,11 +28,11 @@
                     <a class="nav-link" href="{{ route('categories.show', 4) }}">公告</a>
                 </li>
 
-                @if (isset($categories))
-                    @foreach ($categories as $category)
-                        <li class="nav-item"> {{ $category->name }}</li>
-                    @endforeach
-                @endif
+                {{--@if (isset($categories))--}}
+                    {{--@foreach ($categories as $category)--}}
+                        {{--<li class="nav-item"> {{ $category->name }}</li>--}}
+                    {{--@endforeach--}}
+                {{--@endif--}}
             </ul>
 
             <!-- 导航栏右边 -->
