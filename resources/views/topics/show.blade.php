@@ -39,6 +39,7 @@
                         {{ $topic->reply_count }}
                     </div>
 
+                    {{-- 这里是用的!!, 直接输出body的内容 --}}
                     <div class="topic-body mt-4 mb-4">
                         {!! $topic->body !!}
                     </div>
