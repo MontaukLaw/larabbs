@@ -14,6 +14,8 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+//测试翻译用
+Route::get('testTranslate/{q}', 'UsersController@testTranslate')->name('testTranslate');
 
 Route::get('/', 'PagesController@root')->name('root');
 Route::get('/home', 'PagesController@root')->name('home');
@@ -51,11 +53,19 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 //Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
-Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 
 //分类的路由
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 
 //给帖子增加图片
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
+
+//参数表达式 {slug?} ，? 意味着参数可选，这是为了兼容我们数据库中 Slug 为空的话题数据。这种写法可以同时兼容以下两种链接：
+//http://larabbs.test/topics/115
+//http://larabbs.test/topics/115/slug-translation-test
+
+Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
+
 

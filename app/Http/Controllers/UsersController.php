@@ -7,13 +7,16 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
 use Log;
+use App\Handlers\SlugTranslateHandler;
+
+
 class UsersController extends Controller
 {
 
     public function __construct()
     {
         //Log::debug('access');
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['show', 'testTranslate']]);
     }
 
     public function show(User $user)
@@ -31,7 +34,7 @@ class UsersController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(UserRequest $request,ImageUploadHandler $uploader, User $user)
+    public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
         //更新之前也要认证一下.
         $this->authorize('update', $user);
@@ -41,7 +44,7 @@ class UsersController extends Controller
         //如果上传了头像
         if ($request->avatar) {
             //尝试保存头像并返回保存目录
-            $result = $uploader->save($request->avatar, 'avatars', $user->id,416);
+            $result = $uploader->save($request->avatar, 'avatars', $user->id, 416);
             //成功之后, 写入数组
             if ($result) {
                 $data['avatar'] = $result['path'];
@@ -54,6 +57,14 @@ class UsersController extends Controller
         //dd($request->avatar);
         //$user->update($request->all());
         return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功！');
+    }
+
+    public function testTranslate($q)
+    {
+
+        //return $q;
+        $translate = new SlugTranslateHandler();
+        dd($translate->youdaoTranslate($q));
     }
 
 }
