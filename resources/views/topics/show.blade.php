@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
-            <div class="card ">
+            <div class="card">
                 <div class="card-body">
                     <h1 class="text-center mt-3 mb-3">
                         {{ $topic->title }}
@@ -40,12 +40,10 @@
                         {{ $topic->reply_count }}
                     </div>
 
-                    {{-- 这里是用的!!, 直接输出body的内容 --}}
                     <div class="topic-body mt-4 mb-4">
                         {!! $topic->body !!}
                     </div>
 
-                    {{-- 在有权限的情况下 --}}
                     @can('update', $topic)
                         <div class="operate">
                             <hr>
@@ -57,7 +55,6 @@
                                   style="display: inline-block;"
                                   onsubmit="return confirm('您确定要删除吗？');">
                                 {{ csrf_field() }}
-                                {{-- 伪装成delete请求 --}}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-outline-secondary btn-sm">
                                     <i class="far fa-trash-alt"></i> 删除
@@ -68,6 +65,15 @@
 
                 </div>
             </div>
+
+            {{-- 用户回复列表 --}}
+            <div class="card topic-reply mt-4">
+                <div class="card-body">
+                    @include('topics._reply_box', ['topic' => $topic])
+                    @include('topics._reply_list', ['replies' => $topic->replies()->with('user')->get()])
+                </div>
+            </div>
+
         </div>
     </div>
 @stop

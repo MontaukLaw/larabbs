@@ -30,13 +30,18 @@ class TopicsController extends Controller
 
     public function show(Request $request, Topic $topic)
     {
+        //dd($topic);
+        //$topic::with('replies')->where('id', $topic->id)->firstOrFail();
+        //$replies = $topic->replies();
+        //dd($topic::with('replies')->where('id', $topic->id)->firstOrFail());
         // URL 矫正
         // 如果这个topic本身有slug, 而用户没有提交slug来访问, 就转去301
         if (!empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
         }
-
         return view('topics.show', compact('topic'));
+
+        //return view('topics.show', compact('topic','replies'));
     }
 
     public function create(Topic $topic)
