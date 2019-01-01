@@ -13,10 +13,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
 	{
+	    //这里注册所有的observer
 		\App\Models\User::observe(\App\Observers\UserObserver::class);
 		\App\Models\Reply::observe(\App\Observers\ReplyObserver::class);
 		\App\Models\Topic::observe(\App\Observers\TopicObserver::class);
 
+		//让Carbon知道location是zh.时区是gmt8
         \Carbon\Carbon::setLocale('zh');
     }
 
