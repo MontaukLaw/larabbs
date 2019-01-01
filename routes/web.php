@@ -71,3 +71,8 @@ Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show
 //reply的路由, 只需要store跟destroy, 其他不重要
 Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);
 
+//通知路由
+Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+
+
+
