@@ -38,6 +38,11 @@
     @include('layouts._footer')
 </div>
 
+{{-- 如果是开发环境, 就引入sudosu的插件 --}}
+@if (app()->isLocal())
+    @include('sudosu::user-selector')
+@endif
+
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
 {{-- 为编辑器单独引入的js --}}
