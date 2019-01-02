@@ -11,8 +11,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- 这个@yield可能跟vue里面那个自定义标签是一个意思. 第二个参数就是默认值, 没人定制就采用这个默认值 --}}
-    <title>@yield('title', 'LaraBBS') - Laravel 进阶教程</title>
-    <meta name="description" content="@yield('description', 'LaraBBS 爱好者社区')" />
+    {{--<title>@yield('title', 'LaraBBS') - Laravel 进阶教程</title>--}}
+    <title>@yield('title', 'LaraBBS') - {{ setting('site_name', 'Laravel 进阶教程') }}</title>
+    <meta name="description" content="@yield('description', setting('seo_description', 'LaraBBS 爱好者社区。'))" />
+    <meta name="keyword" content="@yield('keyword', setting('seo_keyword', 'LaraBBS,社区,论坛,开发者论坛'))" />
+
+    {{--<meta name="description" content="@yield('description', 'LaraBBS 爱好者社区')" />--}}
     {{-- mix('css/app.css') 会根据 webpack.mix.js 的逻辑来生成 CSS 文件链接。 --}}
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
